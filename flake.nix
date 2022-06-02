@@ -2,8 +2,16 @@
 # See xmonad-contrib/NIX.md for an overview of module usage.
 {
   inputs = {
-    flake-utils.url = github:numtide/flake-utils;
-    git-ignore-nix.url = github:hercules-ci/gitignore.nix/master;
+    flake-utils= {
+      url = github:numtide/flake-utils;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-ignore-nix = {
+      url = github:hercules-ci/gitignore.nix/master;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     unstable.url = github:NixOS/nixpkgs/nixos-unstable;
   };
   outputs = { self, flake-utils, nixpkgs, unstable, git-ignore-nix }:
